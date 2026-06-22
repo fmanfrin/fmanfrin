@@ -244,12 +244,6 @@ export default function SignupPage() {
             </Link>
           </div>
 
-          {/* Demo Info */}
-          <div className="mt-6 p-4 rounded-lg bg-blue-500/10 border border-blue-500/50">
-            <p className="text-xs text-slate-300">
-              <strong>Status:</strong> Página de signup em desenvolvimento. Implementação de autenticação será feita em breve.
-            </p>
-          </div>
         </div>
       </div>
     </div>
