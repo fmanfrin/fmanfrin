@@ -43,7 +43,7 @@
     "@types/uuid": "^9.0.7",
     "@types/crypto-js": "^4.2.2",
     "eslint": "^8.55.0",
-    "eslint-config-next": "15.3.0",
+    "eslint-config-next": "14.2.0",
     "ts-node": "^10.9.2"
   },
   "engines": {
