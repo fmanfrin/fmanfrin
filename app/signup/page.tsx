@@ -4,32 +4,32 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+type SignupStep = 'organization' | 'admin';
+
 export default function SignupPage() {
   const router = useRouter();
-  const [step, setStep] = useState<'organization' | 'admin'>('organization');
+  const [step, setStep] = useState<SignupStep>('organization');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Organization data
+  // Organization
   const [orgName, setOrgName] = useState('');
   const [cnpj, setCnpj] = useState('');
   const [plan, setPlan] = useState('basic');
 
-  // Admin data
+  // Admin
   const [adminName, setAdminName] = useState('');
   const [adminEmail, setAdminEmail] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
   const [adminConfirmPassword, setAdminConfirmPassword] = useState('');
 
-  const handleOrgNext = async (e: React.FormEvent) => {
+  const handleOrgNext = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-
-    if (!orgName) {
+    if (!orgName.trim()) {
       setError('Nome da empresa é obrigatório');
       return;
     }
-
+    setError('');
     setStep('admin');
   };
 
@@ -39,27 +39,31 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      if (!adminName) {
+      if (!adminName.trim()) {
         setError('Nome completo é obrigatório');
+        setLoading(false);
         return;
       }
 
-      if (!adminEmail) {
+      if (!adminEmail.trim()) {
         setError('Email é obrigatório');
+        setLoading(false);
         return;
       }
 
       if (adminPassword.length < 8) {
         setError('Senha deve ter no mínimo 8 caracteres');
+        setLoading(false);
         return;
       }
 
       if (adminPassword !== adminConfirmPassword) {
         setError('As senhas não correspondem');
+        setLoading(false);
         return;
       }
 
-      const response = await fetch('/api/auth/signup', {
+      const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -68,18 +72,19 @@ export default function SignupPage() {
         }),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
-      if (!response.ok) {
+      if (!res.ok) {
         setError(data.error || 'Erro ao criar conta');
+        setLoading(false);
         return;
       }
 
-      router.push('/login?success=true');
+      // Success - redirect to login
+      router.push('/login?registered=true');
     } catch (err) {
-      setError('Erro ao criar conta. Tente novamente.');
+      setError('Erro ao criar conta');
       console.error(err);
-    } finally {
       setLoading(false);
     }
   };
@@ -94,7 +99,7 @@ export default function SignupPage() {
             </div>
             <h1 className="text-2xl font-bold text-white">Elevare</h1>
             <p className="text-slate-400 text-sm mt-2">
-              {step === 'organization' ? 'Criar Nova Empresa' : 'Cadastrar Admin'}
+              {step === 'organization' ? 'Criar Empresa' : 'Cadastrar Admin'}
             </p>
           </div>
 
@@ -109,7 +114,8 @@ export default function SignupPage() {
                   value={orgName}
                   onChange={(e) => setOrgName(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
-                  placeholder="Solare Alimentos"
+                  placeholder="Ex: Solare Alimentos"
+                  required
                 />
               </div>
 
@@ -149,7 +155,7 @@ export default function SignupPage() {
 
               <button
                 type="submit"
-                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition"
               >
                 Próximo
               </button>
@@ -157,7 +163,7 @@ export default function SignupPage() {
           ) : (
             <form onSubmit={handleAdminSignup} className="space-y-4">
               <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/50 text-blue-200 text-sm">
-                Criando empresa: <strong>{orgName}</strong>
+                Criando: <strong>{orgName}</strong>
               </div>
 
               <div>
@@ -170,6 +176,7 @@ export default function SignupPage() {
                   onChange={(e) => setAdminName(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
                   placeholder="Seu Nome"
+                  required
                 />
               </div>
 
@@ -183,6 +190,7 @@ export default function SignupPage() {
                   onChange={(e) => setAdminEmail(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
                   placeholder="admin@empresa.com"
+                  required
                 />
               </div>
 
@@ -196,6 +204,7 @@ export default function SignupPage() {
                   onChange={(e) => setAdminPassword(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
                   placeholder="••••••••"
+                  required
                 />
                 <p className="text-xs text-slate-400 mt-1">Mínimo 8 caracteres</p>
               </div>
@@ -210,6 +219,7 @@ export default function SignupPage() {
                   onChange={(e) => setAdminConfirmPassword(e.target.value)}
                   className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
                   placeholder="••••••••"
+                  required
                 />
               </div>
 
@@ -229,7 +239,10 @@ export default function SignupPage() {
 
               <button
                 type="button"
-                onClick={() => setStep('organization')}
+                onClick={() => {
+                  setStep('organization');
+                  setError('');
+                }}
                 className="w-full px-4 py-2 border border-slate-500 text-slate-200 rounded-lg font-semibold hover:border-slate-300 transition"
               >
                 Voltar
@@ -243,7 +256,6 @@ export default function SignupPage() {
               Entre aqui
             </Link>
           </div>
-
         </div>
       </div>
     </div>
