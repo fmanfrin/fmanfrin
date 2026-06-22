@@ -58,6 +58,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <Link href="/admin/departments" className={`block px-4 py-2 rounded-lg transition ${pathname === '/admin/departments' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 🏢 Departamentos
               </Link>
+              <Link href="/admin/knowledge-base" className={`block px-4 py-2 rounded-lg transition ${pathname === '/admin/knowledge-base' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
+                📚 Base de Conhecimento
+              </Link>
               <Link href="/dashboard" className={`block px-4 py-2 rounded-lg transition text-slate-300 hover:text-white`}>
                 📊 Dashboard
               </Link>
