@@ -157,8 +157,8 @@ CREATE TABLE points_events (
   employee_id uuid NOT NULL REFERENCES employees(id) ON DELETE CASCADE,
   event_type text NOT NULL,
   points integer NOT NULL,
-  training_id uuid REFERENCES NULL,
-  competition_id uuid REFERENCES NULL,
+  training_id uuid,
+  competition_id uuid,
   description text,
   created_at timestamp with time zone DEFAULT now()
 );
