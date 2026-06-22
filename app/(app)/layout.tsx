@@ -65,6 +65,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                 🤖 Criar Treinamento IA
               </Link>
               <hr className="border-slate-700 my-2" />
+              <Link href="/rankings" className={`block px-4 py-2 rounded-lg transition ${pathname === '/rankings' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
+                📊 Rankings
+              </Link>
               <Link href="/achievements" className={`block px-4 py-2 rounded-lg transition ${pathname === '/achievements' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 🏆 Minhas Conquistas
               </Link>
