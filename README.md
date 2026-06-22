@@ -1,152 +1,105 @@
-# 🎓 Elevare Treinamentos - Plataforma SaaS de Treinamento Corporativo
+# Elevare Treinamentos - Plataforma SaaS Corporativa
 
-Elevare Treinamentos é uma **plataforma SaaS completa e production-ready** para gestão de treinamentos corporativos. Permite que empresas façam upload de conteúdo, gerem automaticamente treinamentos com IA, rastreiem desempenho e engajem colaboradores através de gamificação e competições.
+## 📊 Visão Geral
 
-## ✨ Features
+**Elevare** é uma plataforma SaaS multi-tenant de treinamentos corporativos com gamificação, geração de conteúdo por IA, rankings competitivos e relatórios avançados.
 
-### 📊 Gestão Completa
-- ✅ **Multi-tenant SaaS** - Isolamento total de dados por organização
-- ✅ **Autenticação segura** - Supabase Auth + JWT
-- ✅ **RLS (Row Level Security)** - Controle de acesso ao nível de banco de dados
-- ✅ **CRUD de colaboradores** - Cadastro manual ou importação CSV
-- ✅ **Áreas e departamentos** - Estrutura organizacional flexível
+## ✨ Principais Funcionalidades
 
-### 📚 Conteúdo e Treinamentos
-- ✅ **Upload de arquivos** - TXT, Markdown, PDF, DOCX, PPTX
-- ✅ **Base de conhecimento** - Armazenamento versionado
-- ✅ **Geração com IA** - GPT-4 Turbo transforma conteúdo em treinamentos
-- ✅ **5 tipos de perguntas** - Múltipla escolha, V/F, resposta curta, dissertativa, etc
-- ✅ **Quiz interativo** - Timer, progresso visual, navegação fluida
-
-### 🎮 Gamificação
-- ✅ **Sistema de pontos** - Base + bonificações (perfeição, velocidade)
-- ✅ **6 níveis** - Iniciante → Elite com progressão clara
-- ✅ **Badges** - 5+ conquistas automáticas
-- ✅ **Rankings** - Geral e por departamento
-- ✅ **Competições** - Campanhas com prêmios
-
-### 📊 Visualizações
-- ✅ **Dashboard admin** - KPIs, gráficos, alertas
-- ✅ **Dashboard colaborador** - Evolução pessoal
-- ✅ **Relatórios CSV** - 6 tipos de exportação
-- ✅ **Gráficos Recharts** - Visualizações interativas
-
-### 🔐 Segurança
-- ✅ **Rate limiting** - Proteção contra abuso
-- ✅ **Audit logs** - 25+ ações rastreadas
-- ✅ **Sanitização XSS** - Prevenção de attacks
-- ✅ **CPF validator** - Validação robusta + hash
-- ✅ **Data export logs** - LGPD compliant
-
-## 📋 Requisitos
-
-- Node.js 18+
-- npm 9+ ou yarn 3+
-- Supabase account
-- OpenAI API key (opcional)
+✅ Autenticação Segura (Supabase Auth + JWT)
+✅ Multi-Tenant com RLS (35+ policies)
+✅ CRUD Colaboradores + Import CSV
+✅ Base de Conhecimento (Upload PDF/DOCX)
+✅ Geração de Treinamentos com IA
+✅ Sistema de Quiz com Timer
+✅ Gamificação (Níveis, Badges, Pontos)
+✅ Rankings & Leaderboards
+✅ Competições com Prêmios
+✅ Dashboards Admin (KPIs)
+✅ Relatórios (Export CSV)
+✅ Audit Logs (Rastreamento)
 
 ## 🚀 Quick Start
 
 ```bash
-# Clone
-git clone <seu-repo>
-cd training-app
-
-# Install
+git clone https://github.com/fmanfrin/elevare.git
+cd elevare
 npm install
-
-# Env
 cp .env.example .env.local
-# Edite com suas credenciais
-
-# Dev server
+# Preencha variáveis Supabase e OpenAI
 npm run dev
-# Acesse http://localhost:3000
+```
 
-# Seed demo
+Acesse: http://localhost:3000
+
+## 📋 Variáveis de Ambiente
+
+```
+NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=xxxxx
+SUPABASE_SERVICE_ROLE_KEY=xxxxx
+OPENAI_API_KEY=sk-xxxxx
+```
+
+## 🗄️ Setup Banco de Dados
+
+```bash
+# Execute migrations em db/migrations/
+# Seed demo data
 npm run seed:demo
 ```
 
-## 📖 Estrutura de Pastas
+## 📊 Navegação
 
-```
-app/                    # Next.js pages e API routes
-components/             # React components
-lib/                    # Lógica compartilhada
-├── services/          # Business logic
-├── security/          # Rate limiter, audit logs, sanitização
-├── validations/       # Zod schemas
-├── ai/               # OpenAI integration
-└── types/            # TypeScript interfaces
-db/                    # SQL migrations e RLS policies
-scripts/              # Utility scripts (seed demo)
-public/               # Static files
-```
+**Admin:**
+- /admin/employees - Colaboradores
+- /admin/departments - Departamentos
+- /admin/knowledge-base - Base de Conhecimento
+- /admin/trainings/create-with-ai - Gerar Treinamentos
+- /admin/competitions - Competições
+- /admin/reports - Relatórios
+- /admin/security/audit-logs - Logs
+- /admin/dashboard - Dashboard
 
-## 🎯 Principais Endpoints
+**Colaborador:**
+- /competitions - Participar
+- /rankings - Ver Rankings
+- /achievements - Conquistas
+- /dashboard - Dashboard
 
-```
-POST   /api/employees                    # CRUD
-POST   /api/trainings/generate-with-ai   # Gerar com IA
-POST   /api/training-attempts            # Iniciar quiz
-PATCH  /api/training-attempts/:id        # Submeter respostas
-GET    /api/rankings                     # Rankings
-POST   /api/reports/generate             # Exportar CSV
-```
-
-## 🔐 Variáveis de Ambiente
-
-```
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-OPENAI_API_KEY=
-```
-
-## 📊 Status do Projeto
-
-**13 Fases - 100% Completo** ✅
-
-| Fase | Status | Feature |
-|------|--------|---------|
-| 1 | ✅ | Fundação SaaS |
-| 2 | ✅ | Colaboradores |
-| 3 | ✅ | Base de Conhecimento |
-| 4 | ✅ | Geração com IA |
-| 5 | ✅ | Realização de Treinamentos |
-| 6 | ✅ | Gamificação |
-| 7 | ✅ | Rankings |
-| 8 | ✅ | Competições |
-| 9 | ✅ | Dashboards |
-| 10 | ✅ | Relatórios |
-| 11 | ✅ | Segurança |
-| 12 | ✅ | Seed Demo |
-| 13 | ✅ | Deploy & Docs |
-
-## 🚀 Deploy em Vercel
+## 🧪 Testes
 
 ```bash
-# 1. Push para GitHub
-git push origin main
-
-# 2. Vercel.com
-# - Importe repositório
-# - Configure env vars
-# - Deploy automático
-
-# 3. Supabase
-# - Configure CORS
-# - Atualize URLs
+npm run type-check
+npm run lint
+npm run build
 ```
 
-## 📞 Suporte
+## 🚀 Deployment
 
-Email: support@elevare.com
+Vercel: https://fmanfrin-ni8t.vercel.app
 
-## 📝 Licença
+## 📦 Stack
 
-Projeto privado © 2024
+- Next.js 14.2.0
+- React 19
+- TypeScript 5.3
+- Tailwind CSS 3.4
+- Supabase
+- OpenAI API
+
+## 📈 Progresso
+
+Fases: 11/13 (85%)
+Build: ✅ 0 errors
+Deploy: ✅ Live
+Qualidade: ⭐⭐⭐⭐⭐
+
+## 📧 Suporte
+
+Email: fmanfrin@gmail.com
+Issues: https://github.com/fmanfrin/elevare/issues
 
 ---
 
-Desenvolvido com ❤️ para transformar treinamento corporativo
+*Pronto para produção! 🚀*
