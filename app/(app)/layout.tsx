@@ -64,7 +64,13 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <Link href="/admin/trainings/create-with-ai" className={`block px-4 py-2 rounded-lg transition ${pathname.startsWith('/admin/trainings') ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 🤖 Criar Treinamento IA
               </Link>
+              <Link href="/admin/competitions" className={`block px-4 py-2 rounded-lg transition ${pathname === '/admin/competitions' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
+                🎯 Gerenciar Competições
+              </Link>
               <hr className="border-slate-700 my-2" />
+              <Link href="/competitions" className={`block px-4 py-2 rounded-lg transition ${pathname === '/competitions' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
+                🎯 Competições
+              </Link>
               <Link href="/rankings" className={`block px-4 py-2 rounded-lg transition ${pathname === '/rankings' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 📊 Rankings
               </Link>
