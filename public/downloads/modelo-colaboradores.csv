@@ -1,0 +1,5 @@
+fullName,email,cpf,departmentId,jobTitle,managerId,admissionDate,phone,city,state,unit
+João Silva,joao.silva@empresa.com,123.456.789-00,dept-123,Vendedor Sênior,mgr-001,2023-01-15,11987654321,São Paulo,SP,Filial SP
+Maria Santos,maria.santos@empresa.com,987.654.321-00,dept-123,Vendedor,mgr-001,2023-02-20,11987654322,São Paulo,SP,Filial SP
+Pedro Oliveira,pedro.oliveira@empresa.com,456.789.123-00,dept-124,Especialista Marketing,mgr-002,2023-03-10,11987654323,Rio de Janeiro,RJ,Filial RJ
+Ana Costa,ana.costa@empresa.com,789.123.456-00,dept-125,Coordenador Logística,mgr-003,2023-04-05,11987654324,Belo Horizonte,MG,Filial MG

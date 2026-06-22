@@ -1,0 +1,148 @@
+{
+  "users": [
+    {
+      "id": "202ffe00-eb5d-42ae-b34a-c6f37319e235",
+      "name": "Ana Silva",
+      "email": "ana@empresa.com",
+      "role": "trainee",
+      "created_at": "2026-05-30T03:19:19.535Z"
+    },
+    {
+      "id": "90e31f24-ebdf-4010-8568-09ffe9fbfae4",
+      "name": "Bruno Costa",
+      "email": "bruno@empresa.com",
+      "role": "trainee",
+      "created_at": "2026-05-30T03:19:19.537Z"
+    },
+    {
+      "id": "e1805769-38e1-4b6f-b47b-8fa8a1de78d1",
+      "name": "Carla Santos",
+      "email": "carla@empresa.com",
+      "role": "trainee",
+      "created_at": "2026-05-30T03:19:19.537Z"
+    },
+    {
+      "id": "9a529fb3-d434-4d41-8352-44562acc0df9",
+      "name": "Diego Mendes",
+      "email": "diego@empresa.com",
+      "role": "trainee",
+      "created_at": "2026-05-30T03:19:19.537Z"
+    },
+    {
+      "id": "8ef66955-2e50-4582-bf7e-f0f00ce9e6e3",
+      "name": "Admin",
+      "email": "admin@empresa.com",
+      "role": "admin",
+      "created_at": "2026-05-30T03:19:19.537Z"
+    }
+  ],
+  "trainings": [
+    {
+      "id": "68e296b4-6dc2-4637-af4e-6cd5ae383a50",
+      "title": "Segurança da Informação",
+      "description": "Segurança da Informação\n\n Conceito\nA Segurança da Informação é o conjunto de práticas, políticas e tecnologias destinadas a proteger dados e sistemas contra acessos não autorizados, alterações",
+      "content": "# Segurança da Informação\n\n## Conceito\nA **Segurança da Informação** é o conjunto de práticas, políticas e tecnologias destinadas a proteger dados e sistemas contra acessos não autorizados, alterações indevidas, destruição ou indisponibilidade. Ela é essencial para garantir a continuidade dos negócios e a confiança de clientes e parceiros.\n\n## Pilares Fundamentais (Tríade CIA)\n- **Confidencialidade**: garantir que a informação seja acessada apenas por pessoas autorizadas.\n- **Integridade**: assegurar que os dados não sejam alterados de forma indevida ou não autorizada.\n- **Disponibilidade**: garantir que a informação esteja acessível sempre que necessário.\n\nAlguns modelos acrescentam ainda:\n- **Autenticidade**: garantir a identidade real da origem da informação.\n- **Não repúdio**: impedir que o autor negue a autoria de uma ação.\n\n## Principais Ameaças\n- **Malware** (vírus, worms, ransomware, trojans)\n- **Phishing** e engenharia social\n- **Ataques de força bruta** a senhas\n- **Vazamento de dados** internos e externos\n- **Ataques de negação de serviço (DDoS)**\n\n## Boas Práticas\n1. Utilizar **senhas fortes** e autenticação de múltiplos fatores (MFA).\n2. Manter **softwares e sistemas atualizados** (patches de segurança).\n3. Realizar **backups** periódicos e testados.\n4. Aplicar o princípio do **menor privilégio** no acesso.\n5. **Criptografar** dados sensíveis em trânsito e em repouso.\n6. **Treinar e conscientizar** os colaboradores.\n\n## Aspectos Legais\n- **LGPD** (Lei Geral de Proteção de Dados): regula o tratamento de dados pessoais no Brasil.\n- **ISO/IEC 27001**: norma internacional para sistemas de gestão de segurança da informação.\n\n## Conclusão\nA segurança da informação é responsabilidade de todos na organização. A combinação de tecnologia, processos e conscientização das pessoas forma a base de uma postura de proteção eficaz contra ameaças cada vez mais sofisticadas.",
+      "questions": "[{\"id\":1,\"question\":\"Quais são os três pilares fundamentais da Segurança da Informação (tríade CIA)?\",\"options\":[\"A) Confidencialidade, Integridade e Disponibilidade\",\"B) Criptografia, Autenticação e Backup\",\"C) Confiança, Inovação e Agilidade\",\"D) Controle, Inteligência e Auditoria\"],\"correct\":0,\"explanation\":\"A tríade CIA é formada por Confidencialidade, Integridade e Disponibilidade, os três pilares clássicos da Segurança da Informação.\"},{\"id\":2,\"question\":\"O que significa o pilar da Confidencialidade?\",\"options\":[\"A) Garantir que a informação esteja sempre disponível\",\"B) Garantir que a informação seja acessada apenas por pessoas autorizadas\",\"C) Garantir que os dados não sejam alterados\",\"D) Garantir a autoria de uma ação\"],\"correct\":1,\"explanation\":\"A Confidencialidade assegura que apenas pessoas autorizadas tenham acesso à informação, protegendo-a de acessos indevidos.\"},{\"id\":3,\"question\":\"Qual ameaça consiste em enganar usuários para obter informações confidenciais, geralmente por e-mails fraudulentos?\",\"options\":[\"A) DDoS\",\"B) Ransomware\",\"C) Phishing\",\"D) Backup\"],\"correct\":2,\"explanation\":\"O Phishing é uma técnica de engenharia social que engana o usuário, normalmente por e-mails falsos, para roubar dados sensíveis.\"},{\"id\":4,\"question\":\"O pilar da Integridade está relacionado a:\",\"options\":[\"A) Manter a informação acessível 24 horas por dia\",\"B) Impedir que o autor negue uma ação realizada\",\"C) Assegurar que os dados não sejam alterados de forma indevida\",\"D) Criptografar todas as comunicações\"],\"correct\":2,\"explanation\":\"A Integridade garante que a informação permaneça correta e completa, sem alterações não autorizadas.\"},{\"id\":5,\"question\":\"Qual tipo de malware sequestra os dados e exige pagamento de resgate para liberá-los?\",\"options\":[\"A) Worm\",\"B) Ransomware\",\"C) Spyware\",\"D) Adware\"],\"correct\":1,\"explanation\":\"O Ransomware criptografa os dados da vítima e exige o pagamento de um resgate para devolver o acesso às informações.\"},{\"id\":6,\"question\":\"Qual prática adiciona uma camada extra de segurança ao login, além da senha?\",\"options\":[\"A) Autenticação de múltiplos fatores (MFA)\",\"B) Uso de senha simples\",\"C) Compartilhamento de credenciais\",\"D) Desativação de firewall\"],\"correct\":0,\"explanation\":\"A Autenticação de Múltiplos Fatores (MFA) exige mais de uma forma de verificação, aumentando significativamente a segurança do acesso.\"},{\"id\":7,\"question\":\"Qual lei brasileira regula o tratamento de dados pessoais?\",\"options\":[\"A) ISO 9001\",\"B) Marco Civil da Internet\",\"C) LGPD\",\"D) SOX\"],\"correct\":2,\"explanation\":\"A LGPD (Lei Geral de Proteção de Dados) é a legislação brasileira que regula o tratamento de dados pessoais.\"},{\"id\":8,\"question\":\"O princípio do menor privilégio significa que:\",\"options\":[\"A) Todos os usuários devem ter acesso de administrador\",\"B) Cada usuário deve ter apenas os acessos necessários para suas funções\",\"C) Ninguém deve ter acesso ao sistema\",\"D) O acesso deve ser concedido sem restrições\"],\"correct\":1,\"explanation\":\"O princípio do menor privilégio limita os acessos de cada usuário ao estritamente necessário para suas atividades, reduzindo riscos.\"},{\"id\":9,\"question\":\"Qual norma internacional define requisitos para sistemas de gestão de segurança da informação?\",\"options\":[\"A) ISO/IEC 27001\",\"B) ISO 14001\",\"C) ISO 22000\",\"D) ISO 26000\"],\"correct\":0,\"explanation\":\"A ISO/IEC 27001 é a norma internacional que especifica os requisitos para um sistema de gestão de segurança da informação (SGSI).\"},{\"id\":10,\"question\":\"Por que os backups são considerados uma boa prática de segurança?\",\"options\":[\"A) Porque aumentam a velocidade da internet\",\"B) Porque permitem recuperar dados em caso de perda, falha ou ataque\",\"C) Porque substituem a necessidade de senhas\",\"D) Porque eliminam todos os malwares automaticamente\"],\"correct\":1,\"explanation\":\"Os backups garantem a disponibilidade da informação, permitindo a recuperação dos dados em casos de falhas, ataques ou exclusões acidentais.\"}]",
+      "created_by": "admin",
+      "created_at": "2026-05-30T03:41:46.420Z"
+    },
+    {
+      "id": "ee535449-1f3f-4921-a437-33eb5bf21d86",
+      "title": "Produto",
+      "description": "Produto\n\n Visão Geral\nO produto é tudo aquilo que pode ser oferecido a um mercado para satisfazer uma necessidade ou desejo. Pode ser um bem físico, um serviço, uma experiência, um",
+      "content": "# Produto\n\n## Visão Geral\nO **produto** é tudo aquilo que pode ser oferecido a um mercado para satisfazer uma necessidade ou desejo. Pode ser um **bem físico**, um **serviço**, uma **experiência**, uma **ideia** ou uma combinação desses elementos. No contexto da educação corporativa e do marketing, compreender o conceito de produto é fundamental para criar valor para o cliente e para a organização.\n\n## Conceitos Fundamentais\n\n### Níveis de Produto\n- **Produto Núcleo (Core):** o benefício central que o cliente realmente compra.\n- **Produto Básico:** as características essenciais que tornam o produto funcional.\n- **Produto Ampliado:** atributos adicionais como garantia, suporte e entrega.\n- **Produto Potencial:** todas as melhorias e transformações futuras possíveis.\n\n### Classificação dos Produtos\n- **Produtos de Consumo:** destinados ao consumidor final (conveniência, compra comparada, especialidade).\n- **Produtos Industriais:** utilizados na produção de outros bens ou serviços.\n\n## Ciclo de Vida do Produto\n1. **Introdução** – lançamento no mercado, vendas baixas e altos investimentos.\n2. **Crescimento** – aumento das vendas e aceitação do mercado.\n3. **Maturidade** – estabilização das vendas e maior concorrência.\n4. **Declínio** – queda nas vendas e necessidade de renovação ou descontinuação.\n\n## Composto de Produto\nEnvolve decisões sobre **variedade, qualidade, design, marca, embalagem, rótulo e serviços** associados.\n\n## Importância Estratégica\nUm produto bem definido e gerenciado:\n- Gera **valor** e **diferenciação competitiva**.\n- Fortalece o **posicionamento** da marca.\n- Aumenta a **satisfação e fidelização** dos clientes.\n\n## Conclusão\nGerir produtos de forma estratégica exige compreender suas dimensões, ciclo de vida e o valor percebido pelo cliente, alinhando inovação contínua às necessidades do mercado.",
+      "questions": "[{\"id\":1,\"question\":\"O que pode ser considerado um 'produto' no contexto do marketing?\",\"options\":[\"A) Apenas bens físicos tangíveis\",\"B) Tudo que pode ser oferecido a um mercado para satisfazer uma necessidade ou desejo\",\"C) Somente serviços prestados por empresas\",\"D) Exclusivamente ideias e conceitos abstratos\"],\"correct\":1,\"explanation\":\"Produto é tudo que pode ser oferecido a um mercado para satisfazer uma necessidade ou desejo, incluindo bens, serviços, experiências e ideias.\"},{\"id\":2,\"question\":\"Qual nível de produto representa o benefício central que o cliente realmente compra?\",\"options\":[\"A) Produto Ampliado\",\"B) Produto Básico\",\"C) Produto Núcleo (Core)\",\"D) Produto Potencial\"],\"correct\":2,\"explanation\":\"O Produto Núcleo (Core) corresponde ao benefício central, ou seja, à real necessidade que o cliente busca satisfazer.\"},{\"id\":3,\"question\":\"Atributos como garantia, suporte e entrega fazem parte de qual nível de produto?\",\"options\":[\"A) Produto Núcleo\",\"B) Produto Básico\",\"C) Produto Ampliado\",\"D) Produto Núcleo Potencial\"],\"correct\":2,\"explanation\":\"O Produto Ampliado inclui atributos adicionais como garantia, suporte e entrega, que vão além das funções essenciais.\"},{\"id\":4,\"question\":\"Quais são as quatro etapas do ciclo de vida de um produto?\",\"options\":[\"A) Pesquisa, Desenvolvimento, Teste e Lançamento\",\"B) Introdução, Crescimento, Maturidade e Declínio\",\"C) Planejamento, Produção, Venda e Pós-venda\",\"D) Análise, Estratégia, Execução e Controle\"],\"correct\":1,\"explanation\":\"O ciclo de vida do produto compreende as fases de Introdução, Crescimento, Maturidade e Declínio.\"},{\"id\":5,\"question\":\"Na fase de Introdução do ciclo de vida do produto, é comum observar:\",\"options\":[\"A) Vendas baixas e altos investimentos\",\"B) Vendas estáveis e baixa concorrência\",\"C) Queda acentuada nas vendas\",\"D) Pico máximo de lucratividade\"],\"correct\":0,\"explanation\":\"Na Introdução, as vendas são baixas e os investimentos elevados, pois o produto ainda está sendo apresentado ao mercado.\"},{\"id\":6,\"question\":\"Os produtos que são utilizados na produção de outros bens ou serviços são classificados como:\",\"options\":[\"A) Produtos de conveniência\",\"B) Produtos de especialidade\",\"C) Produtos industriais\",\"D) Produtos de consumo\"],\"correct\":2,\"explanation\":\"Produtos industriais são aqueles utilizados como insumos ou recursos na produção de outros bens e serviços.\"},{\"id\":7,\"question\":\"Qual fase do ciclo de vida é caracterizada pela estabilização das vendas e aumento da concorrência?\",\"options\":[\"A) Introdução\",\"B) Crescimento\",\"C) Maturidade\",\"D) Declínio\"],\"correct\":2,\"explanation\":\"A Maturidade é marcada pela estabilização das vendas e maior intensidade competitiva no mercado.\"},{\"id\":8,\"question\":\"O 'composto de produto' envolve decisões sobre:\",\"options\":[\"A) Apenas preço e ponto de venda\",\"B) Variedade, qualidade, design, marca, embalagem e serviços\",\"C) Somente promoção e publicidade\",\"D) Exclusivamente logística e distribuição\"],\"correct\":1,\"explanation\":\"O composto de produto reúne decisões sobre variedade, qualidade, design, marca, embalagem, rótulo e serviços associados.\"},{\"id\":9,\"question\":\"O 'Produto Potencial' refere-se a:\",\"options\":[\"A) As características mínimas necessárias para funcionar\",\"B) O benefício central comprado pelo cliente\",\"C) Todas as melhorias e transformações futuras possíveis\",\"D) Os serviços de garantia atualmente oferecidos\"],\"correct\":2,\"explanation\":\"O Produto Potencial abrange todas as melhorias, inovações e transformações que o produto poderá receber no futuro.\"},{\"id\":10,\"question\":\"Por que a gestão estratégica de produtos é importante para uma organização?\",\"options\":[\"A) Porque reduz a necessidade de qualquer inovação\",\"B) Porque gera valor, diferenciação competitiva e fideliza clientes\",\"C) Porque elimina totalmente a concorrência do mercado\",\"D) Porque garante lucro imediato sem investimentos\"],\"correct\":1,\"explanation\":\"A gestão estratégica de produtos gera valor, fortalece o posicionamento, cria diferenciação competitiva e aumenta a satisfação e fidelização dos clientes.\"}]",
+      "created_by": "admin",
+      "created_at": "2026-05-30T03:43:37.421Z"
+    },
+    {
+      "id": "3c1f7cb7-5cde-4b86-8eec-46b869d24784",
+      "title": "Performa Natural",
+      "description": "Performa Natural - Ração para Cães Adultos\n\n Indicação\n- Público-alvo: Cães adultos de médio e grande porte\n- Idade: A partir de 12 meses\n- Sabor: Arroz, frango, vegetais e maç",
+      "content": "# Performa Natural - Ração para Cães Adultos\n\n## Indicação\n- **Público-alvo:** Cães adultos de **médio e grande porte**\n- **Idade:** A partir de **12 meses**\n- **Sabor:** Arroz, frango, vegetais e maçã\n- **Embalagens disponíveis:** 10,1 kg e 15 kg\n\n## Principais Benefícios\n\n### 🦷 Saúde Oral\n- **Hexametafosfato de sódio** auxilia na redução da formação do tártaro, melhorando a saúde oral.\n\n### 🦠 Saúde Intestinal\n- Combinação de **prebiótico, probióticos e fibras especiais** que equilibram a flora intestinal.\n- Promove **absorção mais eficiente dos nutrientes**.\n\n### 🦴 Articulações\n- **Condroitina, glicosamina e ômega 3** auxiliam na proteção e cuidado das articulações.\n\n### ❤️ Saúde Cardiovascular\n- **L-carnitina e taurina** apoiam a manutenção da função cardíaca.\n\n### 🛡️ Antioxidantes\n- **Vitamina C, vitamina E e selênio orgânico** combatem radicais livres e minimizam sinais do envelhecimento.\n\n### 🌿 Ingredientes Naturais\n- Proteínas de origem animal, frutas e vegetais de alta qualidade para alimentação equilibrada e saudável.\n\n## Composição Destacada\n- Farinha de vísceras de aves, farinha de torresmo, ovo em pó, grão de arroz, farelo de glúten de milho (não transgênico).\n- Complexo de frutas e vegetais (1,5%): batata-doce, ervilha, cenoura, maçã, brócolis, mirtilo.\n- Aditivos probióticos: **Bifidobacterium lactis** e **Lacticaseibacillus rhamnosus**.\n\n## Enriquecimento (valores mínimos por kg)\n- Vitamina A: 11.809 UI | Vitamina E: 113 UI | Vitamina C: 30 mg\n- Zinco: 108 mg | Ferro: 70,4 mg | Selênio: 0,37 mg",
+      "questions": "[{\"id\":1,\"question\":\"A partir de qual idade o Performa Natural é indicado para cães?\",\"options\":[\"A) 6 meses\",\"B) 8 meses\",\"C) 12 meses\",\"D) 18 meses\"],\"correct\":2,\"explanation\":\"O produto é indicado para cães adultos a partir de 12 meses de idade.\"},{\"id\":2,\"question\":\"Para qual porte de cães o produto Performa Natural é destinado?\",\"options\":[\"A) Apenas pequeno porte\",\"B) Médio e grande porte\",\"C) Apenas grande porte\",\"D) Todos os portes\"],\"correct\":1,\"explanation\":\"O produto é destinado a cães adultos de médio e grande porte.\"},{\"id\":3,\"question\":\"Qual ingrediente auxilia na redução da formação do tártaro, contribuindo com a saúde oral?\",\"options\":[\"A) Taurina\",\"B) Hexametafosfato de sódio\",\"C) L-carnitina\",\"D) Glicosamina\"],\"correct\":1,\"explanation\":\"O hexametafosfato de sódio auxilia na redução da formação do tártaro, melhorando a saúde oral.\"},{\"id\":4,\"question\":\"Qual combinação de nutrientes atua na proteção e cuidado com as articulações?\",\"options\":[\"A) L-carnitina e taurina\",\"B) Vitamina C e selênio\",\"C) Condroitina, glicosamina e ômega 3\",\"D) Prebiótico e probióticos\"],\"correct\":2,\"explanation\":\"A combinação de condroitina, glicosamina e ômega 3 auxilia na proteção e no cuidado com as articulações.\"},{\"id\":5,\"question\":\"Quais componentes apoiam a manutenção da função cardíaca?\",\"options\":[\"A) L-carnitina e taurina\",\"B) Vitamina E e selênio\",\"C) Condroitina e glicosamina\",\"D) Fibras e prebióticos\"],\"correct\":0,\"explanation\":\"A combinação de L-carnitina e taurina apoia a manutenção da função cardíaca.\"},{\"id\":6,\"question\":\"Quais antioxidantes estão presentes no produto para combater radicais livres?\",\"options\":[\"A) Vitamina A, B1 e B12\",\"B) Vitamina C, vitamina E e selênio orgânico\",\"C) Ferro, zinco e cobre\",\"D) Taurina, L-lisina e metionina\"],\"correct\":1,\"explanation\":\"A combinação de vitamina C, vitamina E e selênio orgânico ajuda a combater a formação de radicais livres.\"},{\"id\":7,\"question\":\"Quais são os aditivos probióticos presentes na composição do Performa Natural?\",\"options\":[\"A) Lactobacillus acidophilus e Saccharomyces\",\"B) Bifidobacterium lactis e Lacticaseibacillus rhamnosus\",\"C) Escherichia coli e Bacillus subtilis\",\"D) Streptococcus thermophilus e Lactobacillus casei\"],\"correct\":1,\"explanation\":\"Os aditivos probióticos são Bifidobacterium lactis e Lacticaseibacillus rhamnosus.\"},{\"id\":8,\"question\":\"Em quais tamanhos de embalagem o Performa Natural está disponível?\",\"options\":[\"A) 1 kg e 3 kg\",\"B) 5 kg e 10 kg\",\"C) 10,1 kg e 15 kg\",\"D) 15 kg e 20 kg\"],\"correct\":2,\"explanation\":\"O produto está disponível em embalagens de 10,1 kg e 15 kg.\"},{\"id\":9,\"question\":\"Qual combinação de elementos favorece a saúde intestinal e a absorção de nutrientes?\",\"options\":[\"A) Vitaminas A, D3 e E\",\"B) Prebiótico, probióticos e fibras especiais\",\"C) Condroitina e glicosamina\",\"D) L-carnitina e taurina\"],\"correct\":1,\"explanation\":\"A combinação de prebiótico, probióticos e fibras especiais ajuda a equilibrar a flora intestinal, promovendo absorção mais eficiente dos nutrientes.\"},{\"id\":10,\"question\":\"Quais frutas e vegetais compõem o complexo de 1,5% presente na ração?\",\"options\":[\"A) Batata-doce, ervilha, cenoura, maçã, brócolis e mirtilo\",\"B) Banana, laranja, abóbora e espinafre\",\"C) Tomate, alface, pepino e melancia\",\"D) Uva, morango, couve e milho\"],\"correct\":0,\"explanation\":\"O complexo de frutas e vegetais (1,5%) é composto por farinha de batata-doce, farinha de ervilha, cenoura desidratada, maçã desidratada, brócolis desidratado e mirtilo desidratado.\"}]",
+      "created_by": "admin",
+      "created_at": "2026-05-30T03:47:00.406Z"
+    }
+  ],
+  "attempts": [
+    {
+      "id": "9d2b0848-8759-4002-a731-cc65b07032ba",
+      "user_id": "90e31f24-ebdf-4010-8568-09ffe9fbfae4",
+      "training_id": "68e296b4-6dc2-4637-af4e-6cd5ae383a50",
+      "score": 3,
+      "max_score": 10,
+      "answers": "[0,0,0,0,0,0,0,0,0,0]",
+      "completed_at": "2026-05-30T03:42:32.310Z"
+    },
+    {
+      "id": "e1db83ec-8f7d-4f0d-822d-bfbd5def9922",
+      "user_id": "9a529fb3-d434-4d41-8352-44562acc0df9",
+      "training_id": "ee535449-1f3f-4921-a437-33eb5bf21d86",
+      "score": 8,
+      "max_score": 10,
+      "answers": "[1,2,2,1,0,3,2,1,1,1]",
+      "completed_at": "2026-05-30T03:45:29.476Z"
+    },
+    {
+      "id": "44cd37bb-a24d-44de-a717-89a86fca2df3",
+      "user_id": "202ffe00-eb5d-42ae-b34a-c6f37319e235",
+      "training_id": "3c1f7cb7-5cde-4b86-8eec-46b869d24784",
+      "score": 9,
+      "max_score": 10,
+      "answers": "[3,1,1,2,0,1,1,2,1,0]",
+      "completed_at": "2026-05-30T03:49:26.180Z"
+    },
+    {
+      "id": "ee94ec48-d664-49d9-ba3c-8a282b1cd03f",
+      "user_id": "e1805769-38e1-4b6f-b47b-8fa8a1de78d1",
+      "training_id": "3c1f7cb7-5cde-4b86-8eec-46b869d24784",
+      "score": 10,
+      "max_score": 10,
+      "answers": "[2,1,1,2,0,1,1,2,1,0]",
+      "completed_at": "2026-05-30T03:51:50.968Z"
+    }
+  ],
+  "user_points": [
+    {
+      "user_id": "202ffe00-eb5d-42ae-b34a-c6f37319e235",
+      "total_points": 45,
+      "level": 1,
+      "streak": 1,
+      "badges": "[\"first_training\",\"top_10\"]",
+      "last_activity": "2026-05-30T03:49:26.181Z"
+    },
+    {
+      "user_id": "90e31f24-ebdf-4010-8568-09ffe9fbfae4",
+      "total_points": 15,
+      "level": 1,
+      "streak": 1,
+      "badges": "[\"first_training\",\"top_10\"]",
+      "last_activity": "2026-05-30T03:42:32.311Z"
+    },
+    {
+      "user_id": "e1805769-38e1-4b6f-b47b-8fa8a1de78d1",
+      "total_points": 70,
+      "level": 1,
+      "streak": 1,
+      "badges": "[\"first_training\",\"perfect_score\",\"top_10\"]",
+      "last_activity": "2026-05-30T03:51:50.970Z"
+    },
+    {
+      "user_id": "9a529fb3-d434-4d41-8352-44562acc0df9",
+      "total_points": 40,
+      "level": 1,
+      "streak": 1,
+      "badges": "[\"first_training\",\"top_10\"]",
+      "last_activity": "2026-05-30T03:45:29.477Z"
+    },
+    {
+      "user_id": "8ef66955-2e50-4582-bf7e-f0f00ce9e6e3",
+      "total_points": 0,
+      "level": 1,
+      "streak": 0,
+      "badges": "[]",
+      "last_activity": "2026-05-30T03:19:19.538Z"
+    }
+  ]
+}

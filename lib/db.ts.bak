@@ -1,0 +1,50 @@
+// Database utilities and queries
+import { supabase } from './supabase';
+
+/**
+ * Get organization by ID
+ */
+export async function getOrganization(organizationId: string) {
+  const { data, error } = await supabase
+    .from('organizations')
+    .select('*')
+    .eq('id', organizationId)
+    .single();
+
+  if (error) throw error;
+  return data;
+}
+
+/**
+ * Check if user has specific role in organization
+ */
+export async function hasRole(userId: string, role: string) {
+  const { data, error } = await supabase
+    .from('memberships')
+    .select('role')
+    .eq('profile_id', userId)
+    .single();
+
+  if (error) return false;
+  return data?.role === role;
+}
+
+/**
+ * Get employee by user ID
+ */
+export async function getEmployeeByUserId(userId: string) {
+  const { data, error } = await supabase
+    .from('employees')
+    .select('*')
+    .eq('user_id', userId)
+    .single();
+
+  if (error) {
+    if (error.code === 'PGRST116') {
+      return null;
+    }
+    throw error;
+  }
+
+  return data;
+}
