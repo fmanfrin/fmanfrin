@@ -67,6 +67,9 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
               <Link href="/admin/competitions" className={`block px-4 py-2 rounded-lg transition ${pathname === '/admin/competitions' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 🎯 Gerenciar Competições
               </Link>
+              <Link href="/admin/reports" className={`block px-4 py-2 rounded-lg transition ${pathname === '/admin/reports' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
+                📊 Relatórios
+              </Link>
               <hr className="border-slate-700 my-2" />
               <Link href="/competitions" className={`block px-4 py-2 rounded-lg transition ${pathname === '/competitions' ? 'bg-blue-600 text-white' : 'text-slate-300 hover:text-white'}`}>
                 🎯 Competições
