@@ -137,7 +137,7 @@ export default function EmployeesPage() {
 
     setEmployees([...employees, ...data]);
     setShowImportModal(false);
-    alert(\\ colaboradores importados com sucesso!\);
+    alert(`${data.length} colaboradores importados com sucesso!`);
   };
 
   if (loading) {
@@ -185,7 +185,7 @@ export default function EmployeesPage() {
                 <td className="px-6 py-4 text-slate-400">{emp.email}</td>
                 <td className="px-6 py-4 text-slate-400">{emp.job_title || '-'}</td>
                 <td className="px-6 py-4">
-                  <span className={\px-2 py-1 rounded text-xs font-medium \\}>
+                  <span className={`px-2 py-1 rounded text-xs font-medium ${emp.status === 'active' ? 'bg-green-500/20 text-green-300' : 'bg-yellow-500/20 text-yellow-300'}`}>
                     {emp.status}
                   </span>
                 </td>
