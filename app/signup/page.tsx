@@ -4,28 +4,20 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
-type SignupStep = 'organization' | 'admin';
-
 export default function SignupPage() {
   const router = useRouter();
-  const [step, setStep] = useState<SignupStep>('organization');
+  const [step, setStep] = useState('org');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Organization
   const [orgName, setOrgName] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [plan, setPlan] = useState('basic');
-
-  // Admin
   const [adminName, setAdminName] = useState('');
   const [adminEmail, setAdminEmail] = useState('');
   const [adminPassword, setAdminPassword] = useState('');
-  const [adminConfirmPassword, setAdminConfirmPassword] = useState('');
+  const [adminPasswordConfirm, setAdminPasswordConfirm] = useState('');
 
-  const handleOrgNext = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!orgName.trim()) {
+  const handleNext = () => {
+    if (!orgName) {
       setError('Nome da empresa é obrigatório');
       return;
     }
@@ -33,58 +25,44 @@ export default function SignupPage() {
     setStep('admin');
   };
 
-  const handleAdminSignup = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
+  const handleSignup = async () => {
+    if (!adminName || !adminEmail || !adminPassword) {
+      setError('Todos os campos são obrigatórios');
+      return;
+    }
+    if (adminPassword !== adminPasswordConfirm) {
+      setError('As senhas não correspondem');
+      return;
+    }
+    if (adminPassword.length < 8) {
+      setError('Senha deve ter no mínimo 8 caracteres');
+      return;
+    }
+
     setLoading(true);
+    setError('');
 
     try {
-      if (!adminName.trim()) {
-        setError('Nome completo é obrigatório');
-        setLoading(false);
-        return;
-      }
-
-      if (!adminEmail.trim()) {
-        setError('Email é obrigatório');
-        setLoading(false);
-        return;
-      }
-
-      if (adminPassword.length < 8) {
-        setError('Senha deve ter no mínimo 8 caracteres');
-        setLoading(false);
-        return;
-      }
-
-      if (adminPassword !== adminConfirmPassword) {
-        setError('As senhas não correspondem');
-        setLoading(false);
-        return;
-      }
-
-      const res = await fetch('/api/auth/signup', {
+      const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          organization: { name: orgName, cnpj, plan },
+          organization: { name: orgName, plan: 'basic' },
           admin: { name: adminName, email: adminEmail, password: adminPassword },
         }),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (!res.ok) {
+      if (!response.ok) {
         setError(data.error || 'Erro ao criar conta');
         setLoading(false);
         return;
       }
 
-      // Success - redirect to login
-      router.push('/login?registered=true');
+      router.push('/login?success=true');
     } catch (err) {
-      setError('Erro ao criar conta');
-      console.error(err);
+      setError('Erro ao criar conta. Tente novamente.');
       setLoading(false);
     }
   };
@@ -98,13 +76,11 @@ export default function SignupPage() {
               E
             </div>
             <h1 className="text-2xl font-bold text-white">Elevare</h1>
-            <p className="text-slate-400 text-sm mt-2">
-              {step === 'organization' ? 'Criar Empresa' : 'Cadastrar Admin'}
-            </p>
+            <p className="text-slate-400 text-sm mt-2">Plataforma de Treinamentos</p>
           </div>
 
-          {step === 'organization' ? (
-            <form onSubmit={handleOrgNext} className="space-y-4">
+          {step === 'org' ? (
+            <div className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-200 mb-2">
                   Nome da Empresa
@@ -113,38 +89,9 @@ export default function SignupPage() {
                   type="text"
                   value={orgName}
                   onChange={(e) => setOrgName(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
-                  placeholder="Ex: Solare Alimentos"
-                  required
+                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                  placeholder="Ex: Sua Empresa"
                 />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  CNPJ (Opcional)
-                </label>
-                <input
-                  type="text"
-                  value={cnpj}
-                  onChange={(e) => setCnpj(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
-                  placeholder="00.000.000/0000-00"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  Plano
-                </label>
-                <select
-                  value={plan}
-                  onChange={(e) => setPlan(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white focus:outline-none focus:border-blue-500 transition"
-                >
-                  <option value="basic">Básico</option>
-                  <option value="professional">Profissional</option>
-                  <option value="enterprise">Enterprise</option>
-                </select>
               </div>
 
               {error && (
@@ -154,72 +101,59 @@ export default function SignupPage() {
               )}
 
               <button
-                type="submit"
+                onClick={handleNext}
                 className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition"
               >
                 Próximo
               </button>
-            </form>
+            </div>
           ) : (
-            <form onSubmit={handleAdminSignup} className="space-y-4">
+            <div className="space-y-4">
               <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/50 text-blue-200 text-sm">
-                Criando: <strong>{orgName}</strong>
+                Empresa: <strong>{orgName}</strong>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  Nome Completo
-                </label>
+                <label className="block text-sm font-medium text-slate-200 mb-2">Nome Completo</label>
                 <input
                   type="text"
                   value={adminName}
                   onChange={(e) => setAdminName(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
                   placeholder="Seu Nome"
-                  required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  Email
-                </label>
+                <label className="block text-sm font-medium text-slate-200 mb-2">Email</label>
                 <input
                   type="email"
                   value={adminEmail}
                   onChange={(e) => setAdminEmail(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
-                  placeholder="admin@empresa.com"
-                  required
+                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
+                  placeholder="seu@email.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  Senha
-                </label>
+                <label className="block text-sm font-medium text-slate-200 mb-2">Senha</label>
                 <input
                   type="password"
                   value={adminPassword}
                   onChange={(e) => setAdminPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
+                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
                   placeholder="••••••••"
-                  required
                 />
-                <p className="text-xs text-slate-400 mt-1">Mínimo 8 caracteres</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-200 mb-2">
-                  Confirmar Senha
-                </label>
+                <label className="block text-sm font-medium text-slate-200 mb-2">Confirmar Senha</label>
                 <input
                   type="password"
-                  value={adminConfirmPassword}
-                  onChange={(e) => setAdminConfirmPassword(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500 transition"
+                  value={adminPasswordConfirm}
+                  onChange={(e) => setAdminPasswordConfirm(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg bg-slate-700 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-blue-500"
                   placeholder="••••••••"
-                  required
                 />
               </div>
 
@@ -230,31 +164,24 @@ export default function SignupPage() {
               )}
 
               <button
-                type="submit"
+                onClick={handleSignup}
                 disabled={loading}
-                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg font-semibold hover:shadow-lg hover:shadow-blue-500/25 transition disabled:opacity-50"
               >
                 {loading ? 'Criando...' : 'Criar Conta'}
               </button>
 
               <button
-                type="button"
-                onClick={() => {
-                  setStep('organization');
-                  setError('');
-                }}
-                className="w-full px-4 py-2 border border-slate-500 text-slate-200 rounded-lg font-semibold hover:border-slate-300 transition"
+                onClick={() => setStep('org')}
+                className="w-full px-4 py-2 border border-slate-500 text-slate-200 rounded-lg font-semibold hover:border-slate-300"
               >
                 Voltar
               </button>
-            </form>
+            </div>
           )}
 
           <div className="mt-6 text-center text-slate-400 text-sm">
-            Já tem conta?{' '}
-            <Link href="/login" className="text-blue-400 hover:text-blue-300">
-              Entre aqui
-            </Link>
+            Já tem conta? <Link href="/login" className="text-blue-400 hover:text-blue-300">Entre aqui</Link>
           </div>
         </div>
       </div>
