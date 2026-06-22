@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { signIn } from '@/lib/auth';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,9 +18,14 @@ export default function LoginPage() {
     setLoading(true);
 
     try {
-      // TODO: Implement actual authentication
-      console.log('Login with:', { email, password });
-      setError('Autenticação não está implementada ainda. Próxima fase!');
+      const { error: authError } = await signIn(email, password);
+
+      if (authError) {
+        setError(authError.message || 'Email ou senha incorretos');
+        return;
+      }
+
+      router.push('/dashboard');
     } catch (err) {
       setError('Erro ao fazer login. Tente novamente.');
     } finally {

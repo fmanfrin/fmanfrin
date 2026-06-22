@@ -59,13 +59,26 @@ export default function SignupPage() {
         return;
       }
 
-      // TODO: Implement actual signup
-      console.log('Signup data:', {
-        organization: { name: orgName, cnpj, plan },
-        admin: { name: adminName, email: adminEmail, password: adminPassword },
+      const response = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          organization: { name: orgName, cnpj, plan },
+          admin: { name: adminName, email: adminEmail, password: adminPassword },
+        }),
       });
 
-      setError('Signup não está implementado ainda. Próxima fase!');
+      const data = await response.json();
+
+      if (!response.ok) {
+        setError(data.error || 'Erro ao criar conta');
+        return;
+      }
+
+      router.push('/login?success=true');
+    } catch (err) {
+      setError('Erro ao criar conta. Tente novamente.');
+      console.error(err);
     } finally {
       setLoading(false);
     }

@@ -25,19 +25,19 @@ export async function middleware(request: NextRequest) {
   // Check if route requires authentication
   const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route));
 
-  // Get session from request cookies
-  const session = request.cookies.get('sb-access-token');
+  // Get session from cookies (Supabase uses sb-access-token)
+  const accessToken = request.cookies.get('sb-access-token')?.value;
 
-  // If trying to access protected route without session, redirect to login
-  if (isProtectedRoute && !session) {
+  // If trying to access protected route without token, redirect to login
+  if (isProtectedRoute && !accessToken) {
     const loginUrl = new URL('/login', request.url);
     loginUrl.searchParams.set('redirectTo', pathname);
     return NextResponse.redirect(loginUrl);
   }
 
-  // If trying to access public auth routes with session, redirect to app
-  if (isPublicRoute && pathname !== '/' && session) {
-    return NextResponse.redirect(new URL('/app/dashboard', request.url));
+  // If trying to access public auth routes with valid token, redirect to dashboard
+  if (isPublicRoute && pathname !== '/' && accessToken) {
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
   // Continue with the request
