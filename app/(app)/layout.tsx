@@ -11,17 +11,16 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.push('/login');
-        return;
+    // Get user from localStorage (demo mode without Auth)
+    if (typeof window !== 'undefined') {
+      const userName = localStorage.getItem('user_name');
+      const orgName = localStorage.getItem('org_name');
+      if (userName) {
+        setUser({ name: userName, email: orgName });
       }
-      setUser(session.user);
-      setLoading(false);
-    };
-    checkAuth();
-  }, [router]);
+    }
+    setLoading(false);
+  }, []);
 
   const logout = async () => {
     await supabase.auth.signOut();
