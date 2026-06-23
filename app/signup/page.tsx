@@ -37,7 +37,8 @@ export default function SignUp() {
         localStorage.setItem('org_name', org);
       }
 
-      router.push('/dashboard');
+      // Redirect immediately to dashboard
+      setTimeout(() => router.push('/dashboard'), 500);
     } catch (e: any) {
       setErr(e.message || 'Erro ao criar conta');
       setLoading(false);
