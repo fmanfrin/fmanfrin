@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { randomUUID } from 'crypto';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
@@ -17,6 +18,9 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Generate a UUID for the user
+    const userId = randomUUID();
 
     // 1. Create organization
     const { data: orgData, error: orgError } = await supabase
@@ -36,41 +40,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Create user via Supabase Auth (using standard signup)
-    let authData: any;
-    try {
-      const response = await supabase.auth.signUp({
-        email: admin.email,
-        password: admin.password,
-        options: {
-          data: {
-            name: admin.name,
-          },
-        },
-      });
-
-      if (response.error) {
-        console.error('Auth signup error:', JSON.stringify(response.error));
-        return NextResponse.json(
-          { error: 'Failed to create user: ' + response.error.message },
-          { status: 400 }
-        );
-      }
-
-      authData = response.data.user;
-    } catch (error: any) {
-      console.error('Auth signup exception:', error);
-      return NextResponse.json(
-        { error: 'Failed to create user: ' + (error.message || JSON.stringify(error)) },
-        { status: 400 }
-      );
-    }
-
-    // 3. Create profile
+    // 2. Create profile (without Auth)
     const { data: profileData, error: profileError } = await supabase
       .from('profiles')
       .insert([{
-        id: authData.user.id,
+        id: userId,
         email: admin.email,
         full_name: admin.name,
       }])
@@ -84,11 +58,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 4. Create membership with admin_company role
+    // 3. Create membership with admin_company role
     const { data: membershipData, error: membershipError } = await supabase
       .from('memberships')
       .insert([{
-        profile_id: authData.user.id,
+        profile_id: userId,
         organization_id: orgData.id,
         role: 'admin_company',
       }])
@@ -104,10 +78,11 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        message: 'Account created successfully',
+        message: 'Account created successfully! You can now log in.',
         user: {
-          id: authData.user.id,
-          email: authData.user.email,
+          id: userId,
+          email: admin.email,
+          name: admin.name,
         },
         organization: orgData,
       },
