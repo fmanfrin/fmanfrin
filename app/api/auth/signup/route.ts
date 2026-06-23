@@ -107,9 +107,11 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Store organization ID in session/cookie for demo purposes
     return NextResponse.json(
       {
-        message: 'Account created successfully! Please log in.',
+        message: 'Account created successfully!',
+        redirect: '/dashboard',
         user: {
           id: userId,
           email: admin.email,
