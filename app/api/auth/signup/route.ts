@@ -36,29 +36,30 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Create user via Supabase Auth
-    let authData;
+    // 2. Create user via Supabase Auth (using standard signup)
+    let authData: any;
     try {
-      const response = await supabase.auth.admin.createUser({
+      const response = await supabase.auth.signUp({
         email: admin.email,
         password: admin.password,
-        email_confirm: true,
-        user_metadata: {
-          name: admin.name,
+        options: {
+          data: {
+            name: admin.name,
+          },
         },
       });
 
       if (response.error) {
-        console.error('Auth error:', JSON.stringify(response.error));
+        console.error('Auth signup error:', JSON.stringify(response.error));
         return NextResponse.json(
-          { error: 'Failed to create user: ' + JSON.stringify(response.error) },
+          { error: 'Failed to create user: ' + response.error.message },
           { status: 400 }
         );
       }
 
-      authData = response.data;
+      authData = response.data.user;
     } catch (error: any) {
-      console.error('Auth exception:', error);
+      console.error('Auth signup exception:', error);
       return NextResponse.json(
         { error: 'Failed to create user: ' + (error.message || JSON.stringify(error)) },
         { status: 400 }
