@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { randomUUID } from 'crypto';
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
@@ -19,10 +18,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate a UUID for the user
-    const userId = randomUUID();
-
-    // 1. Create organization
+    // 1. Create organization first
     const { data: orgData, error: orgError } = await supabase
       .from('organizations')
       .insert([{
@@ -40,7 +36,42 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 2. Create profile (without Auth)
+    // 2. Try to create auth user via REST API
+    const authResponse = await fetch(`${supabaseUrl}/auth/v1/signup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': supabaseServiceKey,
+      },
+      body: JSON.stringify({
+        email: admin.email,
+        password: admin.password,
+        user_metadata: {
+          name: admin.name,
+        },
+      }),
+    });
+
+    if (!authResponse.ok) {
+      const authError = await authResponse.json();
+      console.error('Auth API error:', authError);
+      return NextResponse.json(
+        { error: 'Failed to create user account. Please try again.' },
+        { status: 400 }
+      );
+    }
+
+    const authData = await authResponse.json();
+    const userId = authData.user?.id || authData.id;
+
+    if (!userId) {
+      return NextResponse.json(
+        { error: 'Failed to create user: No user ID returned' },
+        { status: 400 }
+      );
+    }
+
+    // 3. Create profile
     const { data: profileData, error: profileError } = await supabase
       .from('profiles')
       .insert([{
@@ -58,7 +89,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // 3. Create membership with admin_company role
+    // 4. Create membership with admin_company role
     const { data: membershipData, error: membershipError } = await supabase
       .from('memberships')
       .insert([{
@@ -78,7 +109,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       {
-        message: 'Account created successfully! You can now log in.',
+        message: 'Account created successfully! Please log in.',
         user: {
           id: userId,
           email: admin.email,
